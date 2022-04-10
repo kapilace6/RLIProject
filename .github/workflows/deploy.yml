@@ -20,13 +20,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Load .env file
-        uses: xom9ikk/dotenv@v1.0.2
-
       - name: Deploy code via SSH
         uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.GHUB_HOST }}
           username: ${{ secrets.GHUB_USERNAME }}
           key: ${{ secrets.GHUB_SSH_KEY }}
-          script: 'cd /var/www/RLIProject && sudo ./build/${{ env.APP_ENV }}/deploy.sh'
+          script: 'cd /var/www/RLIProject && sudo ./build/prod/deploy.sh'
