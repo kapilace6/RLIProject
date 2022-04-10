@@ -3,7 +3,7 @@
 <div class="flex justify-between items-center pt-10 px-8 w-full">
     <div class="">
         <div class="block text-5xl font-bold text-gray-900">
-            Welcome to Who??!!
+            Welcome to IRC!
         </div>
         <div class="block text-3xl font-semibold text-gray-700">
             A place for every Indian Racing Enthusiast.

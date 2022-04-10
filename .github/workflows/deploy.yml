@@ -26,4 +26,7 @@ jobs:
           host: ${{ secrets.GHUB_HOST }}
           username: ${{ secrets.GHUB_USERNAME }}
           key: ${{ secrets.GHUB_SSH_KEY }}
-          script: 'cd /var/www/RLIProject && sudo ./build/prod/deploy.sh'
+          script: |
+            cd /var/www/RLIProject;
+            APP_ENV=$(awk '/APP_ENV=/' .env | awk '{split($0,a,"="); print a[2]}');
+            sudo ./build/$APP_ENV/deploy.sh'
