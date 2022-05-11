@@ -12,7 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Copy .env
-        run: echo ${{secrets.STAGING_ENV}} | sed 's/./& /g' > .env
+        run: 'echo "$STAGING_ENV" > .env'
+        shell: bash
+        env:
+          STAGING_ENV: ${{secrets.STAGING_ENV}}
 
       - name: Docker Compose Build
         run: docker compose up --build -d
