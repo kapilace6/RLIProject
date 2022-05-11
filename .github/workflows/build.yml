@@ -21,7 +21,7 @@ jobs:
         run: docker compose up --build -d
 
       - name: Install dependencies
-        run: docker exec -it irc-app composer install
+        run: docker exec irc-app composer install
 
       - name: Run tests
-        run: docker exec -it irc-app composer test
+        run: docker exec irc-app composer test
