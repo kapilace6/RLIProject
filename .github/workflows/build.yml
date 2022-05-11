@@ -1,0 +1,28 @@
+name: CI
+
+on: 
+  [push, pull_request]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: echo ${{secrets.STAGING_ENV}} | sed 's/./& /g' > .env
+
+      - name: Docker Compose Build
+        run: docker compose up --build -d
+
+      - name: Install dependencies
+        run: docker exec -it irc-app composer install
+
+      - name: Run tests
+        run: docker exec -it irc-app composer test

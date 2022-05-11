@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 RUN apt-get update -y && apt-get install -y git curl libxslt-dev \
         libzip-dev libpng-dev libgmp-dev zlib1g-dev libffi-dev
 
@@ -10,4 +10,3 @@ RUN docker-php-ext-install shmop sockets sysvmsg sysvsem sysvshm zip
 WORKDIR /var/www/RLIProject
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer self-update --1
